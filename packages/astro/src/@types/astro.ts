@@ -1749,12 +1749,13 @@ export interface AstroUserConfig {
 		 *
 		 * ```ts
 		 * // src/actions/index.ts
-		 * import { defineAction, z } from "astro:actions";
+		 * import { defineAction, getApiContext, z } from "astro:actions";
 		 *
 		 * export const server = {
 		 *   like: defineAction({
 		 *     input: z.object({ postId: z.string() }),
-		 *     handler: async ({ postId }, context) => {
+		 *     handler: async ({ postId }) => {
+		 *       const context = getApiContext()
 		 *       // update likes in db
 		 *
 		 *       return likes;
@@ -1767,7 +1768,8 @@ export interface AstroUserConfig {
 		 *       author: z.string(),
 		 *       body: z.string(),
 		 *     }),
-		 *     handler: async ({ postId }, context) => {
+		 *     handler: async ({ postId }) => {
+		 *       const context = getApiContext()
 		 *       // insert comments in db
 		 *
 		 *       return comment;
